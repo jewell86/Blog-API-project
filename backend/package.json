@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Blog API Repo",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js", 
+    "Start": "node app.js"
+  },
+  "author": "Jewell White",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
