@@ -4,14 +4,23 @@
   "description": "Blog Frontend Repo",
   "main": "app.js",
   "scripts": {
-    "dev" : "live-server"
+    "build": "browserify main.js -o bundle.js",
+    "watch": "watchify main.js -o bundle.js",
+    "dev-server": "live-server .",
+    "dev": "run-all \"npm run watch\" \"npm run dev-server\""
   },
   "author": "Jewell White",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "live-server": "^1.2.0",
     "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.2",
+    "live-server": "^1.2.0",
+    "run-all": "^1.0.1",
+    "watchify": "^3.11.0"
   }
 }
