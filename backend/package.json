@@ -4,8 +4,8 @@
   "description": "Blog API Repo",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js", 
-    "Start": "node app.js"
+    "dev": "nodemon app.js morgan", 
+    "start": "node app.js"
   },
   "author": "Jewell White",
   "license": "ISC",

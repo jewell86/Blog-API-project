@@ -14,7 +14,7 @@ function getOne(id){
 function create(title, content){
     const post = { id: uuid(), title, content }
     blogs.push(post)
-    return post
+    return blogs
 }
 
 function update(id, title, content){
@@ -26,7 +26,9 @@ function update(id, title, content){
 
 function deleteOne(id){
     const post = blogs.find(post => post.id === id)
-    
+    const index = blogs.indexOf(post)
+    blogs.slice(index, 1)
+    return blogs
     
 }
 

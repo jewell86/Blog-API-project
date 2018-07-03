@@ -13,7 +13,10 @@ function getOne(req, res, next){
 }
 
 function create(req, res, next){
-
+    const title = req.body.title
+    const content = req.body.content
+    const data = models.create(title, content)
+    res.status(200).send({ data })
 }
 
 function update(req, res, next){
