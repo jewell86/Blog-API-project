@@ -5,7 +5,7 @@ const ctrl = require('../controllers/blogs')
 router.get('/', ctrl.getAll)
 router.get('/:id', ctrl.getOne)
 router.post('/', ctrl.create)
-router.put('/', ctrl.update)
-router.delete('/', ctrl.deleteOne)
+router.put('/:id', ctrl.update)
+router.delete('/:id', ctrl.deleteOne)
 
 module.exports = router

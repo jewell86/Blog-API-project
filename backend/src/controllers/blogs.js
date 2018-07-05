@@ -1,7 +1,6 @@
 const models = require('../models/blogs')
 
 function getAll(req, res, next){
-    // const limit = req.query.limit
     const data = models.getAll()
     res.status(200).send({ data })
 }
@@ -20,11 +19,17 @@ function create(req, res, next){
 }
 
 function update(req, res, next){
-
+    const title = req.body.title
+    const content = req.body.content
+    const id = req.params.id
+    const data = models.update(id, title, content)
+    res.status(200).send({ data })
 }
 
 function deleteOne(req, res, next){
-    
+    const id = req.params.id
+    const data = models.deleteOne(id)
+    res.status(200).send({ data })
 }
 
 

@@ -1,6 +1,6 @@
 const uuid = require('uuid')
 
-const blogs = [{id: 1, title: "hello world", content: "hey this is my first blog post heyehehehehe"}, {id: 2, title: "second post", content: "hey this is my second blog post heyehehehehe"}, {id: 3, title: "third post", content: "hey this is my third blog post heyehehehehe"}, {id: 4, title: "fourth post", content: "hey this is my fourth blog post heyehehehehe"}]
+const blogs = []
 
 function getAll(){
     return blogs
@@ -8,28 +8,27 @@ function getAll(){
 
 function getOne(id){
     let blog = blogs.find(post => post.id === id)
-    console.log(blog)
+    return blog
 }
 
-function create(title, content){
+function create(title, content) {
     const post = { id: uuid(), title, content }
     blogs.push(post)
     return blogs
 }
 
-function update(id, title, content){
-    const post = blogs.find(post => post.id === id)
-    post.title = title
-    post.content = content
-    return post
+function update(id, title, content) {
+    const blog = blogs.find(blog => blog.id === id)
+    blog.title = title
+    blog.content = content
+    return blogs
 }
 
 function deleteOne(id){
     const post = blogs.find(post => post.id === id)
     const index = blogs.indexOf(post)
-    blogs.slice(index, 1)
+    blogs.filter(post => post.id !== id)
     return blogs
-    
 }
 
 module.exports = { getAll, getOne, create, update, deleteOne }
