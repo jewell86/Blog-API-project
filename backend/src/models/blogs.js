@@ -27,7 +27,7 @@ function update(id, title, content) {
 function deleteOne(id){
     const post = blogs.find(post => post.id === id)
     const index = blogs.indexOf(post)
-    blogs.filter(post => post.id !== id)
+    blogs.splice(index, 1)
     return blogs
 }
 

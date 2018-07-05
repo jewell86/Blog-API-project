@@ -1,38 +1,53 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const featuredPost = document.querySelector('#single-post')
+//clear featured post on last delete
+//rename variables
+//populate first featured post after first post
+//close edit for after resubmit
+//separate frontend javascript into multiple files
+//make error handling
+//make pretty
+//remove about technology links
+
+const featuredPost = document.querySelector('#featured-post')
 const form = document.querySelector('#form')
 const createButton = document.querySelector('#create-button')
 const allPosts = document.querySelector('#all-posts')
 
+// POPULATE ALL POSTS
 function populatePosts() {
 axios.get('http://localhost:3000/blogs')
 .then(result => {
-    // POPULATE ALL POSTS
     const blogs = result.data.data
     const posts = blogs.map(blog => `<a href="#"><li class="list-group-item postz" data-content="${blog.content}" data-id="${blog.id}">${blog.title}</li></a>`).join("")
     document.querySelector('#all-posts').innerHTML = posts
-    return blogs
-})
-    // POPULATE FEATURED POST
-.then(result => { 
-    let featuredBlog = result[result.length-1]
-    console.log('this is featured post' + featuredBlog)
-    let featuredPost = `<h5 class="card-title" id="featured-title">${featuredBlog.title}</h5>
-    <p class="card-text" id="featured-content">${featuredBlog.content}</p><p class="d-none" id="featured-id">${featuredBlog.id}</p>`
-    document.querySelector('#featured-body').innerHTML = featuredPost
+    const featuredBlog = blogs[blogs.length-1]
+    firstFeatured(featuredBlog) 
     return result
 }) 
     // CHANGE FEATURED POST ON CLICK (COULD GETONE BY ID)
-.then(result => {   
+.then(result => {  
+    populateFeatured()
+})
+} 
+
+function firstFeatured(featuredBlog) {
+    console.log("featured blog function" + featuredBlog)
+    const featuredHTML = `<h5 class="card-title" id="featured-title">${featuredBlog.title}</h5>
+    <p class="card-text" id="featured-content">${featuredBlog.content}</p><p class="d-none" id="featured-id">${featuredBlog.id}</p>`
+    document.querySelector('#featured-body').innerHTML = featuredHTML
+}
+
+function populateFeatured() {
     Array.from(document.querySelectorAll('.postz')).forEach(element => {
         element.addEventListener('click', function(){
             document.querySelector('#featured-body').innerHTML = `<h5 class="card-title" id="featured-title">${element.innerText}</h5>
             <p class="card-text" id="featured-content">${element.dataset.content}</p><p class="d-none" id="featured-id">${element.dataset.id}</p>`
         })
     }) 
-})
-} 
+}
+
 populatePosts()
+
 //CREATE
 createButton.addEventListener('click', function(){
     // editForm.classList.toggle('d-none')
@@ -42,7 +57,9 @@ createButton.addEventListener('click', function(){
     const content = document.querySelector('#content')
     title.value = ""
     content.value = ""
+
 })
+
 form.addEventListener('submit', function(event){
     event.preventDefault()
     const title = document.querySelector('#title')
@@ -50,15 +67,14 @@ form.addEventListener('submit', function(event){
     axios.post('http://localhost:3000/blogs', { title : title.value, content : content.value })
         .then(result => {
             axios.get('http://localhost:3000/blogs')
+            return result
         }) 
         .then(result => {
-            populatePosts()    
+            populatePosts() 
         })
         .catch(err => {
             console.log('Do not worry, everything is fine.')
         })
-        // populatePosts()
-        featuredPost.classList.toggle('d-none')
         form.classList.toggle('d-none')      
 })
 
@@ -91,17 +107,16 @@ editForm.addEventListener('submit', function(ev) {
     }) 
 })
 
-// // // DELETE  
+// DELETE  
 const deleteButton = document.querySelector('#delete-button')
 deleteButton.addEventListener('click', function(ev) {
-    console.log('delete')
     ev.preventDefault()
     let id = document.querySelector('#featured-id').innerText
     axios.delete(`http://localhost:3000/blogs/${id}`)
     .then(result => {
         populatePosts()
+        // editForm.classList.toggle('d-none')
     })
 })
 
-console.log("hello from main.js")
 },{}]},{},[1]);
