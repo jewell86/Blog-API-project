@@ -5,42 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Blog!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link rel="stylesheet" type="text/css" media="screen" href="https://bootswatch.com/4/journal/bootstrap.min.css" />
+    <link rel="stylesheet" href="./main.css" type="text/css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
 <div class="container">
-<!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Welcome to my Blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">About Technology and Fun Stuff<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="create-button">Create New Post</button>
-                </li>
-          </ul>
-        </div>
-      </nav>
 
+
+<!-- HEADER! -->
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+          <h1 class="display-4">Jewell's Blog</h1>
+          <p class="lead">About Seattle, coding, food and drink!</p>
+          <a class="btn btn-primary btn-lg" id="create-button" role="button">New Post</a>
+        </div>
+      </div>
 
 
       <div class="row">
 
         <!-- ALL POSTS -->
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
+
+
+        <div class="col-3 all-posts-container">
+            <div class="card bg-primary" style="width: 18rem;">
                 <div class="card-header">
                  All Blog Posts
                 </div>
                 <ul id="all-posts" class="list-group list-group-flush">
-
                 </ul>
               </div>
          </div>
@@ -63,13 +58,13 @@
           <!-- FEATURED POST -->
 
           <div class="card" id="featured-post">
-              <h5 class="card-header">Most Recent Blog Post</h5>
+              <h5 class="card-header bg-secondary">Featured Post</h5>
               <div class="card-body" id="featured-body">
 
               </div>
               <div class="card-body">
-                <a href="#" class="btn btn-primary" id="edit-button">Edit</a>
-                <a href="#" class="btn btn-primary" id="delete-button">Delete</a></div>
+                <a href="#" class="btn btn-success" id="edit-button">Edit</a>
+                <a href="#" class="btn btn-danger" id="delete-button">Delete</a></div>
             </div>
 
           <!-- EDIT FORM -->
@@ -87,15 +82,6 @@
 
         </div>
       </div>
-
-
-
-
-      <div class="row">
-
-        </div>
-
-
 </div>
 
 
