@@ -5,30 +5,30 @@ const blogs = []
 function getAll(){
     return blogs
 }
-
+//UNUSED FUNCTION
 function getOne(id){
-    let blog = blogs.find(post => post.id === id)
+    let blog = blogs.find(blog => blog.id === id)
     return blog
 }
 
 function create(title, content) {
-    const post = { id: uuid(), title, content }
-    blogs.push(post)
-    return blogs
+    const blog = { id: uuid(), title, content }
+    blogs.push(blog)
+    return blog
 }
 
 function update(id, title, content) {
     const blog = blogs.find(blog => blog.id === id)
     blog.title = title
     blog.content = content
-    return blogs
+    return blog
 }
 
 function deleteOne(id){
-    const post = blogs.find(post => post.id === id)
-    const index = blogs.indexOf(post)
+    const blog = blogs.find(blog => blog.id === id)
+    const index = blogs.indexOf(blog)
     blogs.splice(index, 1)
-    return blogs
+    return blog
 }
 
 module.exports = { getAll, getOne, create, update, deleteOne }
